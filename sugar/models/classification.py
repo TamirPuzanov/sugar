@@ -1,10 +1,10 @@
 import torch.nn as nn
 import torch
 
-from ..nn import LazyModule
+from ..nn import LazyModule, Module
 
 
-class Classification(nn.Module):
+class Classification(Module):
     def __init__(self, encoder, num_classes=1000):
         super().__init__()
 

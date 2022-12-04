@@ -4,6 +4,8 @@ import torch
 from typing import Any
 from torch import Tensor
 
+from ...nn import Module
+
 
 __all__ = [
     "AlexNet_bb",
@@ -11,7 +13,7 @@ __all__ = [
 ]
 
 
-class AlexNet_bb(nn.Module):
+class AlexNet_bb(Module):
     def __init__(self) -> None:
         super(AlexNet_bb, self).__init__()
 

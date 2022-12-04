@@ -4,6 +4,8 @@ import torch
 from torch import Tensor
 from typing import Any, List, Type, Union, Optional
 
+from ...nn import Module
+
 __all__ = [
     "ResNet_bb", "_BasicBlock", "_Bottleneck", 
     "resnet18_bb", "resnet34_bb", "resnet50_bb",
@@ -11,7 +13,7 @@ __all__ = [
 ]
 
 
-class _BasicBlock(nn.Module):
+class _BasicBlock(Module):
     expansion: int = 1
 
     def __init__(
@@ -54,7 +56,7 @@ class _BasicBlock(nn.Module):
         return out
 
 
-class _Bottleneck(nn.Module):
+class _Bottleneck(Module):
     expansion: int = 4
 
     def __init__(
@@ -105,7 +107,7 @@ class _Bottleneck(nn.Module):
         return out
 
 
-class ResNet_bb(nn.Module):
+class ResNet_bb(Module):
 
     def __init__(
             self,

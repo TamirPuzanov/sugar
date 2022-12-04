@@ -4,6 +4,8 @@ import torch
 import torch.nn.functional as F
 from torch.autograd import Variable
 
+from ...nn import Module
+
 import math
 
 __all__ = ["EfficientNet_bb", "efficientnet_b0_bb", "efficientnet_b1_bb",
@@ -11,7 +13,7 @@ __all__ = ["EfficientNet_bb", "efficientnet_b0_bb", "efficientnet_b1_bb",
            "efficientnet_b5_bb", "efficientnet_b6_bb", "efficientnet_b7_bb"]
 
 
-class Swish(nn.Module):
+class Swish(Module):
     def __init__(self):
         super().__init__()
         self.sigmoid = nn.Sigmoid()
@@ -64,7 +66,7 @@ def conv1x1(in_channel, out_channels):
         Swish()
     )
 
-class SqueezeAndExcitation(nn.Module):
+class SqueezeAndExcitation(Module):
     def __init__(self, channel, squeeze_channel, se_ratio):
         super().__init__()
         squeeze_channel = squeeze_channel * se_ratio
@@ -84,7 +86,7 @@ class SqueezeAndExcitation(nn.Module):
         y = x * y
         return y
 
-class MBConvBlock(nn.Module):
+class MBConvBlock(Module):
     def __init__(self, in_channel, out_channel, kernel_size, stride, expand_ratio, se_ratio, drop_path_rate):
         super().__init__()
         expand = (expand_ratio != 1)
@@ -129,7 +131,7 @@ class MBConvBlock(nn.Module):
             return self.conv(x)
 
 
-class EfficientNet_bb(nn.Module):
+class EfficientNet_bb(Module):
     cfg = [
         #(in_channels, out_channels, kernel_size, stride, expand_ratio, se_ratio, repeats)
         [32,  16,  3, 1, 1, 0.25, 1],

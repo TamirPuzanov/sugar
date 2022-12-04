@@ -4,11 +4,12 @@ import torch
 import torch.nn.functional as F
 import math
 
+from ...nn import Module
 
 __all__ = ["Xception_bb", "xception_bb"]
 
 
-class SeparableConv(nn.Module):
+class SeparableConv(Module):
     def __init__(self, input_channel, output_channel, kernel_size=1, stride=1, padding=0, dilation=1, bias=False):
         super().__init__()
         self.dwc = nn.Sequential(
@@ -20,7 +21,7 @@ class SeparableConv(nn.Module):
         return self.dwc(X)
 
 
-class Block(nn.Module):
+class Block(Module):
     def __init__(self, input_channel, out_channel, reps, strides=1, relu=True, grow_first=True):
         super().__init__()
         if out_channel != input_channel or strides!=1:
@@ -72,7 +73,7 @@ class Block(nn.Module):
         return X
 
 
-class Xception_bb(nn.Module):
+class Xception_bb(Module):
     def __init__(self, input_channel=3):
         super().__init__()
         self.relu = nn.ReLU(inplace=True)
