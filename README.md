@@ -1,6 +1,7 @@
 ## Exemple
 
-``` import sugar as ss
+```python 
+import sugar as ss
 import torch
 
 bb = ss.models.xception_bb(input_channel=3)
