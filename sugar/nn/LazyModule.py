@@ -1,8 +1,10 @@
 import torch.nn as nn
 import torch
 
+from .Module import Module
 
-class LazyModule(nn.Module):
+
+class LazyModule(Module):
     def __init__(self, module, kwargs={}, arg_name="in_features", dim=1):
         super().__init__()
         self.module = module

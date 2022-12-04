@@ -1,8 +1,7 @@
 from .ResNet import resnet18_bb, resnet34_bb
 from .ResNet import resnet50_bb, resnet101_bb, resnet152_bb
 
-from .ResNeXt import resnext18_bb, resnext34_bb
-from .ResNeXt import resnext50_bb, resnext101_bb, resnext152_bb
+from .ResNeXt import *
 
 from .VGG import vgg11_bb, vgg13_bb, vgg16_bb, vgg19_bb
 from .VGG import vgg11_bn_bb, vgg13_bn_bb, vgg16_bn_bb, vgg19_bn_bb
