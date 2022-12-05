@@ -89,21 +89,21 @@ class ALSTM(Module):
             output_t = []
             for layer_idx in range(self.num_layers):
                 if 0==t:
-                    ht_1, ct_1 = hidden_state[layer_idx][0],hidden_state[layer_idx][1]
+                    ht_1, ct_1 = hidden_state[layer_idx][0].to(x.device), hidden_state[layer_idx][1].to(x.device)
                     attention_h=hidden_state[-1][0]
                 else:
-                    ht_1, ct_1 = hct_1[layer_idx][0],hct_1[layer_idx][1]
+                    ht_1, ct_1 = hct_1[layer_idx][0].to(x.device), hct_1[layer_idx][1].to(x.device)
                 if 0==layer_idx:
                     feature_map=self.bb(x[:, :, t, :, :])
                     feature_map=feature_map.view(feature_map.size(0),feature_map.size(1),-1)
                     attention_map=self.Wha(attention_h.to(x.device))
                     attention_map=torch.unsqueeze(self.softmax(attention_map), 1)
-                    attention_feature=attention_map*feature_map
-                    attention_feature=torch.sum(attention_feature,2)
-                    ht, ct = self.cell_list[layer_idx](attention_feature,ht_1, ct_1)
+                    attention_feature=attention_map * feature_map
+                    attention_feature=torch.sum(attention_feature, 2).to(x.device)
+                    ht, ct = self.cell_list[layer_idx](attention_feature, ht_1, ct_1)
                     output_t.append([ht,ct])
                 else:
-                    ht, ct = self.cell_list[layer_idx](output_t[layer_idx-1][0], ht_1, ct_1)
+                    ht, ct = self.cell_list[layer_idx](output_t[layer_idx-1][0].to(x.device), ht_1, ct_1)
                     output_t.append([ht,ct])
             attention_h=output_t[-1][0]
             hct_1=output_t
