@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 
-from ..nn import LazyModule, Module
+from ..nn import Module
 
 
 class Classifier(Module):
@@ -10,10 +10,7 @@ class Classifier(Module):
 
         self.encoder = encoder
         self.fc = nn.Sequential(
-            nn.Flatten(), LazyModule(
-                nn.Linear, {"out_features": num_classes},
-                arg_name="in_features", dim=1
-            )
+            nn.Flatten(), nn.LazyLinear(num_classes)
         )
     
     def forward(self, x):
