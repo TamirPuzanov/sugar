@@ -96,7 +96,7 @@ class ALSTM(Module):
                 if 0==layer_idx:
                     feature_map=self.bb(x[:, :, t, :, :])
                     feature_map=feature_map.view(feature_map.size(0),feature_map.size(1),-1)
-                    attention_map=self.Wha(attention_h)
+                    attention_map=self.Wha(attention_h.to(x.device))
                     attention_map=torch.unsqueeze(self.softmax(attention_map), 1)
                     attention_feature=attention_map*feature_map
                     attention_feature=torch.sum(attention_feature,2)
