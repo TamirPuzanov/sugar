@@ -13,6 +13,8 @@ from .EfficientNet import efficientnet_b0_bb, efficientnet_b1_bb
 from .EfficientNet import efficientnet_b2_bb, efficientnet_b3_bb, efficientnet_b4_bb
 from .EfficientNet import efficientnet_b5_bb, efficientnet_b6_bb, efficientnet_b7_bb
 
+from .ShuffleNetV2 import *
+
 # import ResNet as resnet
 # import ResNeXt as resnext
 # import VGG as vgg
