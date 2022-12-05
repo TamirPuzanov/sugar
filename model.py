@@ -1,8 +1,9 @@
 import sugar as ss
 import torch
 
-bb = ss.models.resnext29_16_64_bb()
-model = ss.models.Classifier(bb, num_classes=8)
+bb = ss.models.alstm_efficientnet_b0_bb()
+model = ss.models.Classifier(bb, 9)
 
-print(model(torch.rand(1, 3, 128, 128)).shape)
+print(model(torch.rand(1, 3, 2, 224, 224)).shape)
+print(model(torch.rand(1, 3, 4, 224, 224)).shape)
 print(model.numel())
