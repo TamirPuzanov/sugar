@@ -24,5 +24,5 @@ class Linear(Module):
 
             r.append(x)
         
-        return torch.stack(x, dim=1)
+        return torch.stack(r, dim=1)
 
