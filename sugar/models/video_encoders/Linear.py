@@ -16,13 +16,13 @@ class Linear(Module):
     def forward(self, x_3d):
         b, a, _, _, _ = x_3d.shape
 
-        r = torch.zeros(b, a, self.n, device=x_3d.device)
+        r = []
 
         for t in range(a):
             x = self.bb(x_3d[:, t, :, :, :])
             x = torch.flatten(x, 1)
 
-            r[:, t, :] = x
+            r.append(x)
         
-        return r
+        return torch.stack(x, dim=1)
 
